@@ -1,46 +1,14 @@
-/*
+import Leaderboard from "./Leaderboard.jsx";
 
 const users = [
-    { id: "pessoa1", name: "Barou (Leandro" },
-    { id: "pessoa2", name: "CBUM (Edmilson)" },
-    { id: "pessoa3", name: "Caike Pro (Lucas)" },
-    { id: "pessoa4", name: "Ra(mon)fael" },
-    { id: "pessoa5", name: "Columbu (Antonio)" },
-    { id: "pessoa6", name: "Ronnie Coleman (leleo)" },
-    { id: "pessoa7", name: "Leojr" },
-  ];
-  
-  const Login = ({ setUser }) => {
-    return (
-      <div>
-        <h1 className="text-2xl font-bold mb-4">Escolha seu usuário</h1>
-        <div className="grid grid-cols-2 gap-4">
-          {users.map((user) => (
-            console.log(user),
-            <button
-              key={user.id}
-              onClick={() => setUser(user)}
-            >
-              {user.name}
-            </button>
-          ))}
-        </div>
-      </div>
-    );
-  };
-  
-  export default Login;
-  */
-
-  const users = [
-    { id: "user1", name: "Barou (Leandro)" },
-    { id: "user2", name: "CBUM (Edmilson)" },
-    { id: "user3", name: "Caike Pro (Lucas)" },
-    { id: "user4", name: "Ra(mon)fael" },
-    { id: "user5", name: "Columbu (Antonio)" },
-    { id: "user6", name: "Ronnie Coleman (leleo)" },
-    { id: "user7", name: "Leojr" },
-  ];
+  { id: "Leandro", name: "Barou (Leandro)" },
+  { id: "Edmilton", name: "CBUM (Edmilson)" },
+  { id: "Lucas", name: "Caike Pro (Lucas)" },
+  { id: "Rafael", name: "Ra(mon)fael" },
+  { id: "Antonio", name: "Columbu (Antonio)" },
+  { id: "Leo Lucas", name: "Ronnie Coleman (leleo)" },
+  { id: "Leo Jr", name: "Leojr" },
+];
 
 function Login({setUser}) {
   return (
@@ -61,11 +29,12 @@ function Login({setUser}) {
           <button 
             key={user.id}
             style={buttonStyle}
-            onClick={() => setUser(user.name)}
+            onClick={() => setUser(user)}
           >
             {user.name}</button>
         ))}
       </div>
+      <Leaderboard />
     </div>
 
   )
