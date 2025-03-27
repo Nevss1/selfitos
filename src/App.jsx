@@ -1,13 +1,8 @@
-import { useState, useEffect } from "react";
-import Login from "./components/Login"; 
-import DailyForm from "./components/DailyForm";
-import teste from "./Queryfirebase"
+import { useState } from "react";
+import Login from "./components/Login.jsx"; 
+import DailyForm from "./components/DailyForm.jsx";
 
 const App = () => {
-  useEffect(() => {
-    teste();
-  }, [])
-
   const [user, setUser] = useState(null);
 
   return (
