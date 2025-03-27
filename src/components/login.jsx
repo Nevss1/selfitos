@@ -21,9 +21,10 @@ function Login({setUser}) {
         <p style={{
           fontFamily: "Roboto",
           fontSize: "30px",
-          fontWeight: "lighter"
+          fontWeight: "lighter",
+          color: "white"
 
-        }}>Usuários</p>
+        }}>Escolha o seu usuário</p>
 
         {users.map((user) => (
           <button 

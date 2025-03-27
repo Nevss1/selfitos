@@ -1,18 +1,17 @@
 import { useState, useEffect } from "react";
 import Login from "./components/Login"; 
 import DailyForm from "./components/DailyForm";
-import testFirestoneQuery from "./testFirestoneQuery";
+import teste from "./Queryfirebase"
 
 const App = () => {
   useEffect(() => {
-    // Chama a função para testar a consulta ao Firestore
-    testFirestoneQuery();
-  }, []); // A função será chamada uma vez, quando o componente for montado
+    teste();
+  }, [])
 
   const [user, setUser] = useState(null);
 
   return (
-    <div>
+    <div style={{background: "rgb(43, 43, 43)"}}>
       {!user ? (
         <Login setUser={setUser} />
       ) : (

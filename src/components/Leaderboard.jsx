@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, doc } from "firebase/firestore";
 import { db } from '../firebase'; // Certifique-se de que o db está corretamente importado
 
 // Função que recupera o leaderboard
 const getLeaderboard = async () => {
   try {
     // Recupera todos os usuários da coleção "users"
-    const usersSnapshot = await getDocs(collection(db, "users"));
+    const usersSnapshot = await getDocs(query(collection(db, "users")));
     const leaderboard = [];
-
+    console.log(usersSnapshot)
     // Para cada usuário, busca suas pontuações diárias
     for (const userDoc of usersSnapshot.docs) {
       const userData = userDoc.data();
+      
       const dailySnapshot = await getDocs(collection(db, "users", userDoc.id, "daily"));
       let totalPoints = 0;
 
@@ -27,7 +28,7 @@ const getLeaderboard = async () => {
         totalPoints: totalPoints
       });
     }
-
+    console.log(leaderboard);
     // Ordena o leaderboard pela pontuação (do maior para o menor)
     leaderboard.sort((a, b) => b.totalPoints - a.totalPoints);
     return leaderboard;
@@ -61,23 +62,60 @@ const Leaderboard = () => {
     return <div>Carregando leaderboard...</div>;
   }
 
-  // Exibe uma mensagem caso não haja dados
-  if (leaderboard.length === 0) {
-    return <div>Nenhum dado disponível para exibir o leaderboard.</div>;
-  }
-
   return (
-    <div>
-      <h2>Leaderboard</h2>
-      <ul>
-        {leaderboard.map((user, index) => (
-          <li key={user.id}>
-            <strong>{index + 1}. {user.name}</strong>: {user.totalPoints} pontos
-          </li>
-        ))}
-      </ul>
+    <div style={conteinerRanking}>
+      <div style={rankingTitle}>Ranking</div>
+        <div style={conteinerUserRanking}>
+          {leaderboard.map((user, index) => (
+            <div style={conteinerUser}>
+              <div>
+                {index + 1}.
+              </div> 
+              <div>  
+                {user.id}
+              </div>
+              <div>
+                {user.totalPoints} pontos
+              </div>
+            </div>
+          ))}
+        </div>
     </div>
   );
 };
+
+// Estilos CSS
+
+const conteinerRanking = {
+  display: "flex",
+  justifyContent: "center",
+  flexDirection: "column",
+  alignItems: "center",
+  marginTop: "40px",
+  padding: "10px",
+}
+
+const rankingTitle = {
+  fontFamily: "Roboto",
+  fontSize: "30px",
+  fontWeight: "lighter"
+}
+
+const conteinerUserRanking = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  width: "100%",
+}
+
+const conteinerUser = {
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  width: "90%",
+  padding : "10px",
+  justifyContent: "space-between",
+  borderBottom: "1px solid #ccc"
+}
 
 export default Leaderboard;

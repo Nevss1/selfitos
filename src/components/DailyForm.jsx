@@ -23,7 +23,7 @@ const DailyForm = ({ user }) => {
       });
 
       setTotalPontos(total);
-    };
+    }; // fetchPoints atualiza o estado dos Pontos do Jogador usuário
 
     fetchPoints();
   }, [user.id]);
