@@ -87,7 +87,7 @@ const DailyForm = ({ user }) => {
           Dormiu 7-8h? (+15 pontos)
         </label>
       </div>
-      <button type="submit" onClick={handleSubmit} className="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg">
+      <button type="submit" onClick={handleSubmit} style={{ marginTop: "1rem" }}>
         Salvar
       </button>
     </div>
