@@ -23,7 +23,6 @@ function Login({setUser}) {
           fontSize: "30px",
           fontWeight: "lighter",
           color: "white"
-
         }}>Escolha o seu usuário</p>
 
         {users.map((user) => (
