@@ -91,14 +91,16 @@ const conteinerRanking = {
   justifyContent: "center",
   flexDirection: "column",
   alignItems: "center",
-  marginTop: "40px",
+
+  margin: "20px 0px 0px 0px",
   padding: "10px",
 }
 
 const rankingTitle = {
   fontFamily: "Roboto",
   fontSize: "30px",
-  fontWeight: "lighter"
+  fontWeight: "lighter",
+  margin: "0px 0px 10px 0px",
 }
 
 const conteinerUserRanking = {
