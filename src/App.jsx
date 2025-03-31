@@ -6,7 +6,10 @@ const App = () => {
   const [user, setUser] = useState(null);
 
   return (
-    <div style={{background: "rgb(43, 43, 43)"}}>
+    <div style={{background: "rgb(37, 37, 37)"}}>
+      <div style={header}>
+        <img src="../public/olympia-banner.png" style={containerLogo}/>
+      </div>
       {!user ? (
         <Login setUser={setUser} />
       ) : (
@@ -21,12 +24,23 @@ const App = () => {
   )
 }
 
+const header = {
+  justifyContent: "space-around",
+  alignItems: "center",
+  display: "flex",
+  width: "100%",
+  height: "50px",
+  marginTop: "10px",
+}
+const containerLogo = {
+  height: "100%",
+}
+
 const conteinerBemVindo = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: "#282c34",
   fontFamily: "Roboto",
   fontSize: "30px",
   fontWeight: "lighter",

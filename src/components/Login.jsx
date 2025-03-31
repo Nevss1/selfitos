@@ -23,7 +23,7 @@ function Login({setUser}) {
           fontSize: "30px",
           fontWeight: "lighter",
           color: "white"
-        }}>Escolha o seu usuário</p>
+        }}>Quem está acessando?</p>
 
         {users.map((user) => (
           <button 
