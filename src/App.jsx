@@ -47,12 +47,7 @@ const conteinerBemVindo = {
   margin: "16px 0px 6px 0px",
 };
 const centerContainer = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  height: "100vh",
-  margin: "0",
-  flexDirection: "column",
+  margin: "60px 0px 0px 0px",
 }
 
 export default App;
