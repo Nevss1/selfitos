@@ -1,28 +1,26 @@
 import { useState } from "react";
-import Login from "./components/Login.jsx"; 
+import Login from "./components/Login.jsx";
 import DailyForm from "./components/DailyForm.jsx";
 
 const App = () => {
   const [user, setUser] = useState(null);
 
   return (
-    <div style={{background: "rgb(37, 37, 37)"}}>
+    <div style={{ background: "rgb(37, 37, 37)" }}>
       <div style={header}>
-        <img src="../public/olympia-banner.png" style={containerLogo}/>
+        <img src="/olympia-banner.png" style={containerLogo} />
       </div>
       {!user ? (
         <Login setUser={setUser} />
       ) : (
         <>
-          <div style={conteinerBemVindo}>
-            Bem vindo, {user.id}!</div>
+          <div style={conteinerBemVindo}>Bem vindo, {user.id}!</div>
           <DailyForm user={user} />
         </>
-      )
-      }
+      )}
     </div>
-  )
-}
+  );
+};
 
 const header = {
   justifyContent: "space-around",
@@ -31,10 +29,10 @@ const header = {
   width: "100%",
   height: "50px",
   marginTop: "10px",
-}
+};
 const containerLogo = {
   height: "100%",
-}
+};
 
 const conteinerBemVindo = {
   display: "flex",
