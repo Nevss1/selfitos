@@ -7,7 +7,7 @@ const users = [
   { id: "Rafael", name: "Ra(mon)fael" },
   { id: "Antonio", name: "Columbu (Antonio)" },
   { id: "Leo Lucas", name: "Ronnie Coleman (leleo)" },
-  { id: "Leo Jr", name: "Leojr" },
+  { id: "Leo Jr", name: "Leojr"},
 ];
 
 function Login({setUser}) {

@@ -11,7 +11,8 @@ const App = () => {
         <Login setUser={setUser} />
       ) : (
         <>
-          <h1>Bem vindo, {user.name}!</h1>
+          <div style={conteinerBemVindo}>
+            Bem vindo, {user.id}!</div>
           <DailyForm user={user} />
         </>
       )
@@ -19,5 +20,17 @@ const App = () => {
     </div>
   )
 }
+
+const conteinerBemVindo = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundColor: "#282c34",
+  fontFamily: "Roboto",
+  fontSize: "30px",
+  fontWeight: "lighter",
+  margin: "16px 0px 6px 0px",
+};
 
 export default App;

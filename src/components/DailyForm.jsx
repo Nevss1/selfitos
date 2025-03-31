@@ -3,6 +3,7 @@ import { db } from "../firebase";
 import { collection, getDocs, query } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
 
+
 const DailyForm = ({ user }) => {
   const [data, setData] = useState({
     academia: false,
@@ -63,28 +64,33 @@ const DailyForm = ({ user }) => {
   };
 
   return (
-    <div className="p-4 border rounded-lg shadow-md">
-      <h2 className="text-xl font-bold mb-4">Preencha seus dados de hoje</h2>
-      <p className="mb-2 text-lg font-semibold">Pontuação Total: {totalPontos} pontos</p>
-      <div style={{ display: "flex", flexDirection: "column" }}> 
+    <div style={conteinerGeral}>
+      <div style={conteinerPontuacao}>Pontuação total: {totalPontos} pontos</div>
+      <div style={preenchaDados}>Preencha seus dados diários</div>
+      
+      <div style={{ display: "flex", flexDirection: "column", fontFamily: "Roboto", margin: "0px 0px 0px 0px" }}> 
         <label>
           <input type="checkbox" name="academia" checked={data.academia} onChange={handleChange} />
-          Foi à academia? (+20 pontos)
+          Academia (+20 pontos)
         </label>
 
-        <label>
-          <input type="checkbox" name="agua" checked={data.agua} onChange={handleChange} />
-          Bebeu a meta de água? (+20 pontos)
+        <label style={conteinerCheckBox}>
+          <input style={checkBox} type="checkbox" name="agua" checked={data.agua} onChange={handleChange} />
+          Meta de água (+20 pontos)
         </label>
 
         <label>
           <input type="checkbox" name="alimentacao" checked={data.alimentacao} onChange={handleChange} />
-          Se alimentou bem? (+30 pontos)
+          Alimentação (+30 pontos)
         </label>
 
         <label>
           <input type="checkbox" name="sono" checked={data.sono} onChange={handleChange} />
-          Dormiu 7-8h? (+15 pontos)
+          Sono 7-8h (+15 pontos)
+        </label>
+        <label>
+          <input type="checkbox" name="sono" checked={data.sono} onChange={handleChange} />
+          Cardio (+15 pontos)
         </label>
       </div>
       <button type="submit" onClick={handleSubmit} style={{ marginTop: "1rem" }}>
@@ -93,5 +99,34 @@ const DailyForm = ({ user }) => {
     </div>
   );
 };
+
+const conteinerGeral = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+};
+const conteinerPontuacao = {
+  fontFamily: "Roboto",
+  fontSize: "18px",
+  fontWeight: "lighter",
+  margin: "0px 0px 10px 0px",
+}
+const preenchaDados = {
+  fontFamily: "Roboto",
+  fontSize: "16px",
+  fontWeight: "lighter",
+  margin: "0px 0px 10px 0px",
+};
+const conteinerCheckBox = {
+  fontSize: "20px",
+}
+
+const checkBox = {
+  accentColor: "green",
+  borderRadius: "100%",
+  width: "16px",
+  height: "16px",
+} 
 
 export default DailyForm;
