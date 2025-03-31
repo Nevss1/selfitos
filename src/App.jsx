@@ -14,8 +14,10 @@ const App = () => {
         <Login setUser={setUser} />
       ) : (
         <>
-          <div style={conteinerBemVindo}>Bem vindo, {user.id}!</div>
-          <DailyForm user={user} />
+          <div style={centerContainer}>
+            <div style={conteinerBemVindo}>Bem vindo, {user.id}!</div>
+            <DailyForm user={user} />
+          </div>
         </>
       )}
     </div>
@@ -44,5 +46,13 @@ const conteinerBemVindo = {
   fontWeight: "lighter",
   margin: "16px 0px 6px 0px",
 };
+const centerContainer = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "100vh",
+  margin: "0",
+  flexDirection: "column",
+}
 
 export default App;
