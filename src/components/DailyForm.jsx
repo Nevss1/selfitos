@@ -66,12 +66,6 @@ const DailyForm = ({ user }) => {
 
   return (
     <div style={conteinerGeral}>
-      <div>
-          <label>
-          <input type="checkbox"/>
-          <span class="slider round"></span>
-        </label>
-      </div>
       <div style={conteinerPontuacao}>Pontuação total: {totalPontos} pontos</div>
       <div style={preenchaDados}>Preencha seus dados diários</div>
       
