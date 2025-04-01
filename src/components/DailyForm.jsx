@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { db } from "../firebase";
 import { collection, getDocs, query } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
+import "../styles.css"
 
 const DailyForm = ({ user }) => {
   const [data, setData] = useState({
@@ -50,8 +51,8 @@ const DailyForm = ({ user }) => {
       (data.sono ? 15 : 0) +
       (data.cardio ? 20 : 0);
 
-    const today = new Date().toISOString().split("T")[0]; 
-    
+    const today = new Date().toLocaleString("en-CA", { timeZone: "America/Sao_Paulo" }).split(",")[0];
+
     const docRef = collection(db, "users", user.id, "daily");
 
     try {
@@ -65,6 +66,12 @@ const DailyForm = ({ user }) => {
 
   return (
     <div style={conteinerGeral}>
+      <div>
+          <label>
+          <input type="checkbox"/>
+          <span class="slider round"></span>
+        </label>
+      </div>
       <div style={conteinerPontuacao}>Pontuação total: {totalPontos} pontos</div>
       <div style={preenchaDados}>Preencha seus dados diários</div>
       
