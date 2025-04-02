@@ -109,7 +109,7 @@ const ScoreChart = () => {
           {users.map((user) => (
             <Line 
               key={user.id} 
-              type="linear" 
+              type="basis" 
               dataKey={user.id} 
               stroke={user.color} 
               name={user.name}
