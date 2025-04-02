@@ -1,4 +1,6 @@
 import Leaderboard from "./Leaderboard.jsx";
+import ScoreChart from "./ScoreChart.jsx";
+
 
 const users = [
   { id: "Leandro", name: "Barou (Leandro)" },
@@ -35,6 +37,7 @@ function Login({setUser}) {
         ))}
       </div>
       <Leaderboard />
+      <ScoreChart />
     </div>
 
   )
