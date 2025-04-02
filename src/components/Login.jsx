@@ -28,13 +28,18 @@ function Login({setUser}) {
         }}>Quem está acessando?</p>
 
         {users.map((user) => (
-          <button 
-            key={user.id}
-            style={buttonStyle}
-            onClick={() => setUser(user)}
-          >
-            <img src="/arrow.png" alt="User Avatar" style={{ width: "30px", height: "30px"}} />
-            </button>
+          <div style={userBox}>
+            <div style={{margin: "0px 0px 0px 10px"}}>
+              {user.name}  
+            </div>
+            <button 
+              key={user.id}
+              style={buttonStyle}
+              onClick={() => setUser(user)}
+            >
+              <img src="/arrow.png" alt="User Avatar" style={{ width: "30px", height: "30px"}} />
+              </button>
+          </div>
         ))}
       </div>
       <Leaderboard />
@@ -51,9 +56,9 @@ const buttonStyle = {
   borderRadius: "100%",
   cursor: "pointer",
   margin: "5px",
-  width: "20px",
-  height: "20px",
-  padding: "16px",
+  width: "25px",
+  height: "25px",
+  padding: "18px",
   fontFamily: "Roboto",
   fontSize: "16px",
   display: "flex",
@@ -61,4 +66,19 @@ const buttonStyle = {
   justifyContent: "center",
 }
 
+const userBox = {
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "space-between",
+  backgroundColor: "rgba(58, 58, 58, 0.62)",
+  color: "white",
+  borderRadius: "40px",
+  border: "0.5px solid rgba(255, 255, 255, 0.62)",
+  padding: "10px",
+  margin: "5px",
+  width: "70vw",
+  height: "36px",
+  fontFamily: "Roboto",
+}
 export default Login;

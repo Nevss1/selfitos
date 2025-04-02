@@ -66,8 +66,10 @@ const DailyForm = ({ user }) => {
     let pontos = 0; // Inicializa a variável de pontos
 
     const calculatePoints = () => {
-      if (data.academia && workoutMode == 4) pontos += 30;
-        else if (data.academia && workoutMode == 3 )pontos += 40; 
+      if (data.academia) {
+        if (workoutMode == 4) pontos += 30; // Modo de treino 4
+        else if (workoutMode == 3) pontos += 40; // Modo de treino 3
+      }
       if (data.agua) pontos += 15;
       if (data.alimentacao) pontos += 20;
       if (data.sono) pontos += 15;
