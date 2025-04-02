@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase";
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, getDocs, getDoc } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
-import "../styles.css"
+import "../stylesDailyForm.css"
+import Infopopup from "./infoPopUp.jsx"
 
 const DailyForm = ({ user }) => {
   const [data, setData] = useState({
@@ -13,11 +14,27 @@ const DailyForm = ({ user }) => {
     cardio: false,
   });
   const [totalPontos, setTotalPontos] = useState(0);
+  const [workoutMode, setWorkoutMode] = useState(4);
 
   useEffect(() => {
+    if (!user) return;
+
+
+    const fetchWorkoutMode = async () => {
+      const userRef = doc(db, "users", user.id);
+      const userDoc = await getDoc(userRef);
+
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        console.log(userData.WorkoutMode)
+        if (userData.WorkoutMode) setWorkoutMode(userData.WorkoutMode);
+      }
+    }; // fetchWorkoutMode atualiza o estado do Modo de Treino do usuário	
+
+
     const fetchPoints = async () => {
-      const q = query(collection(db, "users", user.id, "daily"));
-      const querySnapshot = await getDocs(q);
+      const userDailyRef = collection(db, "users", user.id, "daily");
+      const querySnapshot = await getDocs(userDailyRef);
 
       let total = 0;
       querySnapshot.forEach((doc) => {
@@ -27,6 +44,8 @@ const DailyForm = ({ user }) => {
       setTotalPontos(total);
     }; // fetchPoints atualiza o estado dos Pontos do Jogador usuário
 
+
+    fetchWorkoutMode();
     fetchPoints();
   }, [user.id]);
 
@@ -44,12 +63,19 @@ const DailyForm = ({ user }) => {
       return;
     }
 
-    const pontos = 
-      (data.academia ? 30 : 0) +
-      (data.agua ? 15 : 0) +
-      (data.alimentacao ? 20 : 0) +
-      (data.sono ? 15 : 0) +
-      (data.cardio ? 20 : 0);
+    let pontos = 0; // Inicializa a variável de pontos
+
+    const calculatePoints = () => {
+      if (data.academia && workoutMode == 4) pontos += 30;
+        else pontos += 40; 
+      if (data.agua) pontos += 15;
+      if (data.alimentacao) pontos += 20;
+      if (data.sono) pontos += 15;
+      if (data.cardio) pontos += 20;
+      return pontos;
+    }
+    calculatePoints()
+
 
     const today = new Date().toLocaleString("en-CA", { timeZone: "America/Sao_Paulo" }).split(",")[0];
 
@@ -65,84 +91,50 @@ const DailyForm = ({ user }) => {
   };
 
   return (
-    <div style={conteinerGeral}>
-      <div style={conteinerPontuacao}>Pontuação total: {totalPontos} pontos</div>
-      <div style={preenchaDados}>Preencha seus dados diários</div>
+    <div className="conteinerGeral">
+      <div className="conteinerPontuacao">Pontuação total: {totalPontos} pontos</div>
+      <div className="preenchaDados">Preencha seus dados diários</div>
       
       <div style={{ display: "flex", flexDirection: "column", fontFamily: "Roboto", margin: "0px 0px 0px 0px" }}> 
-        <label style={conteinerCheckBox}>
-        💪<input style={checkBox} type="checkbox" name="academia" checked={data.academia} onChange={handleChange} />
-          Academia (+30)
+        <label className="conteinerCheckBox">
+        💪<input type="checkbox" name="academia" checked={data.academia} onChange={handleChange} />
+          Academia (+{workoutMode == 4 ? 30 : 40})
         </label>
 
-        <label style={conteinerCheckBox}>
-        🏃 <input style={checkBox} type="checkbox" name="cardio" checked={data.cardio} onChange={handleChange} />
+        <label className="conteinerCheckBox">
+        🏃 <input type="checkbox" name="cardio" checked={data.cardio} onChange={handleChange} />
           Cardio (+20)
         </label>
 
-        <label style={conteinerCheckBox}>
-        🥗<input style={checkBox} type="checkbox" name="alimentacao" checked={data.alimentacao} onChange={handleChange} />
+        <label className="conteinerCheckBox">
+        🥗<input type="checkbox" name="alimentacao" checked={data.alimentacao} onChange={handleChange} />
           Alimentação (+20)
         </label>
 
-        <label style={conteinerCheckBox}>
-        🌊<input style={checkBox} type="checkbox" name="agua" checked={data.agua} onChange={handleChange} />
+        <label className="conteinerCheckBox">
+        🌊<input type="checkbox" name="agua" checked={data.agua} onChange={handleChange} />
           Meta de água (+15)
         </label>
 
-        <label style={conteinerCheckBox}>
-        💤<input style={checkBox} type="checkbox" name="sono" checked={data.sono} onChange={handleChange} />
+        <label className="conteinerCheckBox}">
+        💤<input type="checkbox" name="sono" checked={data.sono} onChange={handleChange} />
           Sono 7-8h (+15)
         </label>
       </div>
-      <button type="submit" onClick={handleSubmit} style={salvarButton}>
+      <button type="submit" onClick={handleSubmit} className="salvarButton">
         Salvar
       </button>
+      <div style={infoConteiner}>
+        <Infopopup workoutMode={workoutMode} setWorkoutMode={setWorkoutMode} user={user}/>
+      </div>
     </div>
   );
 };
 
-const conteinerGeral = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-};
-const conteinerPontuacao = {
+const infoConteiner = {
+  margin: "40px 0px 0px 0px",
   fontFamily: "Roboto",
-  fontSize: "18px",
-  fontWeight: "lighter",
-  margin: "0px 0px 10px 0px",
-}
-const preenchaDados = {
-  fontFamily: "Roboto",
-  fontSize: "16px",
-  fontWeight: "lighter",
-  margin: "0px 0px 10px 0px",
-};
-const conteinerCheckBox = {
-  fontSize: "16px",
-  marginTop: "4px",
+  width: "90vw",
 }
 
-const checkBox = {
-  accentColor: "green",
-  borderRadius: "100%",
-  width: "16px",
-  height: "16px",
-  marginRight: "8px",
-} 
-const salvarButton = {
-  backgroundColor: "white",
-  color: "black",
-  borderRadius: "10px",
-  cursor: "pointer",
-  margin: "5px",
-  width: "90vw",
-  padding: "16px",
-  fontFamily: "Roboto",
-  fontSize: "16px",
-  fontWeight: "lighter",
-  marginTop: "40px",
-}
 export default DailyForm;

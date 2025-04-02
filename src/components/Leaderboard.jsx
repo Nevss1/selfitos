@@ -8,7 +8,6 @@ const getLeaderboard = async () => {
     // Recupera todos os usuários da coleção "users"
     const usersSnapshot = await getDocs(query(collection(db, "users")));
     const leaderboard = [];
-    console.log(usersSnapshot)
     // Para cada usuário, busca suas pontuações diárias
     for (const userDoc of usersSnapshot.docs) {
       const userData = userDoc.data();
@@ -28,7 +27,6 @@ const getLeaderboard = async () => {
         totalPoints: totalPoints
       });
     }
-    console.log(leaderboard);
     // Ordena o leaderboard pela pontuação (do maior para o menor)
     leaderboard.sort((a, b) => b.totalPoints - a.totalPoints);
     return leaderboard;
