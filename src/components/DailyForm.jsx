@@ -67,7 +67,7 @@ const DailyForm = ({ user }) => {
 
     const calculatePoints = () => {
       if (data.academia && workoutMode == 4) pontos += 30;
-        else pontos += 40; 
+        else if (data.academia && workoutMode == 3 )pontos += 40; 
       if (data.agua) pontos += 15;
       if (data.alimentacao) pontos += 20;
       if (data.sono) pontos += 15;
@@ -75,7 +75,7 @@ const DailyForm = ({ user }) => {
       return pontos;
     }
     calculatePoints()
-
+    console.log("Pontos calculados:", pontos);
 
     const today = new Date().toLocaleString("en-CA", { timeZone: "America/Sao_Paulo" }).split(",")[0];
 

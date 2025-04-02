@@ -33,7 +33,8 @@ function Login({setUser}) {
             style={buttonStyle}
             onClick={() => setUser(user)}
           >
-            {user.name}</button>
+            <img src="/arrow.png" alt="User Avatar" style={{ width: "30px", height: "30px"}} />
+            </button>
         ))}
       </div>
       <Leaderboard />
@@ -44,15 +45,20 @@ function Login({setUser}) {
 }
 
 const buttonStyle = {
-  backgroundColor: "white",
-  color: "black",
-  borderRadius: "10px",
+  backgroundColor: "rgba(255, 255, 255, 0.62)",
+  color: "white",
+  border: "none",
+  borderRadius: "100%",
   cursor: "pointer",
   margin: "5px",
-  width: "90vw",
+  width: "20px",
+  height: "20px",
   padding: "16px",
   fontFamily: "Roboto",
-  fontSize: "16px"
+  fontSize: "16px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 }
 
 export default Login;
