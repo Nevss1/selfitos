@@ -4,7 +4,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend, ResponsiveContainer } from "recharts";
 
 const users = [
-  { id: "Leandro", name: "Barou", color: "#ff7300" },
+  { id: "Leandro", name: "Barou", color: "#ff7300", },
   { id: "Edmilton", name: "CBUM", color: "#387908" },
   { id: "Lucas", name: "Caike Pro", color: "#8884d8" },
   { id: "Rafael", name: "Ra(mon)fael", color: "#82ca9d" },
@@ -113,6 +113,7 @@ const ScoreChart = () => {
               dataKey={user.id} 
               stroke={user.color} 
               name={user.name}
+              dot={false}
             />
           ))}
         </LineChart>
