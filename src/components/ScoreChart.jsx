@@ -4,13 +4,13 @@ import { collection, getDocs } from "firebase/firestore";
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend, ResponsiveContainer } from "recharts";
 
 const users = [
-  { id: "Leandro", name: "Barou", color: "#ff7300", },
-  { id: "Edmilton", name: "CBUM", color: "#387908" },
-  { id: "Lucas", name: "Caike Pro", color: "#8884d8" },
-  { id: "Rafael", name: "Ra(mon)fael", color: "#82ca9d" },
-  { id: "Antonio", name: "Columbu", color: "#ffc658" },
-  { id: "Leo Lucas", name: "Ronnie Coleman", color: "#d884d8" },
-  { id: "Leo Jr", name: "Leojr", color: "#4080ff" },
+  { id: "Leandro", name: "usuário 1", color: "#ff7300", },
+  { id: "Edmilton", name: "usuário 2", color: "#387908" },
+  { id: "Lucas", name: "usuário 3", color: "#8884d8" },
+  { id: "Rafael", name: "usuário 4", color: "#82ca9d" },
+  { id: "Antonio", name: "usuário 5", color: "#ffc658" },
+  { id: "Leo Lucas", name: "usuário 6", color: "#d884d8" },
+  { id: "Leo Jr", name: "usuário 7", color: "#4080ff" },
 ];
 
 const ScoreChart = () => {

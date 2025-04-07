@@ -70,7 +70,7 @@ const Leaderboard = () => {
                 {index + 1}.
               </div> 
               <div>  
-                {user.id}
+                usuário {index + 1}
               </div>
               <div>
                 {user.totalPoints} pontos

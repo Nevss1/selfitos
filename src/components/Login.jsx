@@ -3,13 +3,13 @@ import ScoreChart from "./ScoreChart.jsx";
 
 
 const users = [
-  { id: "Leandro", name: "Barou (Leandro)" },
-  { id: "Edmilton", name: "CBUM (Edmilson)" },
-  { id: "Lucas", name: "Caike Pro (Lucas)" },
-  { id: "Rafael", name: "Ra(mon)fael" },
-  { id: "Antonio", name: "Columbu (Antonio)" },
-  { id: "Leo Lucas", name: "Ronnie Coleman (leleo)" },
-  { id: "Leo Jr", name: "Leojr"},
+  { id: "usuário 1", name: "usuário 1" },
+  { id: "usuário 2", name: "usuário 2" },
+  { id: "usuário 3", name: "usuário 3" },
+  { id: "usuário 4", name: "usuário 4" },
+  { id: "usuário 5", name: "usuário 5" },
+  { id: "usuário 6", name: "usuário 6" },
+  { id: "usuário 7", name: "usuário 7"},
 ];
 
 function Login({setUser}) {
